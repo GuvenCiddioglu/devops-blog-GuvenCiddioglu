@@ -1,0 +1,15 @@
+[book]
+authors = ["Bart"]
+language = "nl"
+multilingual = false
+src = "src"
+title = "DevOps Blog"
+
+[output.linkcheck]
+warning-policy = "ignore"
+
+[output.html.fold]
+enable = true
+level = 2
+
+[preprocessor.kroki-preprocessor]
