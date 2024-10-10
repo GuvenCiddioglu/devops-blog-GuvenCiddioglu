@@ -2,33 +2,50 @@
 
 Als DevOps-professional ben ik altijd op zoek naar manieren om onze workflows efficiënter, veiliger en schaalbaarder te maken. De opkomst van microservices en cloud-native applicaties heeft het API-beheer complexer gemaakt dan ooit. Onlangs besloot ik Kong te verkennen, een krachtige open-source API-gateway die veelbelovend leek voor onze Kubernetes-omgeving. In deze blogpost neem ik je mee op mijn reis met Kong, deel ik mijn ervaringen en geef ik tips over hoe je Kong kunt implementeren en optimaliseren voor beter API-beheer.
 
+## Bronnen
+
+- Grafana Labs. (9 oktober 2024). Grafana Documentation. Geraadpleegd van [https://grafana.com/docs/](https://grafana.com/docs/)  
+- HAProxy Technologies. (9 oktober 2024). HAProxy Documentation. Geraadpleegd van [https://www.haproxy.org/documentation/](https://www.haproxy.org/documentation/)  
+- Jenkins. (9 oktober 2024). Jenkins Documentation. Geraadpleegd van [https://www.jenkins.io/doc/](https://www.jenkins.io/doc/)  
+- Kubernetes. (9 oktober 2024). Kubernetes Documentation. Geraadpleegd van [https://kubernetes.io/docs/home/](https://kubernetes.io/docs/home/)  
+- Kong. (9 oktober 2024-a). Kong for Kubernetes. Geraadpleegd van [https://docs.konghq.com/kubernetes-ingress-controller/](https://docs.konghq.com/kubernetes-ingress-controller/)  
+- Kong. (9 oktober 2024-b). decK Documentation. Geraadpleegd van [https://docs.konghq.com/deck/](https://docs.konghq.com/deck/)  
+- NGINX. (9 oktober 2024). NGINX Documentation. Geraadpleegd van [https://docs.nginx.com/](https://docs.nginx.com/)  
+- Prometheus. (9 oktober 2024). Prometheus Documentation. Geraadpleegd van [https://prometheus.io/docs/introduction/overview/](https://prometheus.io/docs/introduction/overview/)  
+- Traefik Labs. (9 oktober 2024). Traefik Documentation. Geraadpleegd van [https://doc.traefik.io/traefik/](https://doc.traefik.io/traefik/)  
+- ChatGPT. (9 oktober 2024). Blogpost herschrijven naar markdown formaat en wat tekst toevoeging. Geraadpleegd van [https://chatgpt.com/share/67078e53-38f0-800e-8d59-2f7849e2fa73](https://chatgpt.com/share/67078e53-38f0-800e-8d59-2f7849e2fa73)  
+- ChatGPT. (9 oktober 2024). Blogpost generatie en aanpassingen met gerichte prompts. Geraadpleegd van [https://chatgpt.com/share/67078e8f-0930-800e-a07b-6f6e11dc63e5](https://chatgpt.com/share/67078e8f-0930-800e-a07b-6f6e11dc63e5)  
+- ChatGPT. (9 oktober 2024). Onderzoeksplan aanpassing. Geraadpleegd van [https://chatgpt.com/share/67078eba-25c0-800e-a53e-20f30848f3eb](https://chatgpt.com/share/67078eba-25c0-800e-a53e-20f30848f3eb)  
+- ChatGPT. (9 oktober 2024). Verschil tussen Kong en native Ingress van Kubernetes. Geraadpleegd van [https://chatgpt.com/share/67078ed9-9278-800e-b133-47ea63b7544f](https://chatgpt.com/share/67078ed9-9278-800e-b133-47ea63b7544f)
+
+
 ## Waarom Kong? Een Diepgaande Kijk op de Kernfunctionaliteiten
 
 Kong is een open-source API-gateway die als tussenlaag fungeert tussen clients en backend-services. Het beheert, beveiligt en optimaliseert API-verkeer, waardoor je eenvoudig functionaliteiten kunt toevoegen zoals load balancing, authenticatie, en observability
 
-### Wat Maakt Kong Uniek?
+### Wat maakt Kong uniek?
 
 Kong is een krachtige open-source API-gateway die zich onderscheidt van andere oplossingen zoals NGINX, Traefik en HAProxy. Dit komt door een aantal unieke eigenschappen die het API-beheer aanzienlijk verbeteren:
 
-- **Uitbreidbaarheid met Plugins**: Kong biedt een uitgebreid ecosysteem van zowel officiële als community-plugins. Dit maakt het eenvoudig om functionaliteiten toe te voegen zoals authenticatie, autorisatie, rate limiting en meer.
-- **Hoge Prestaties**: Gebouwd op Nginx en geschreven in Lua, kan Kong hoge verkeersvolumes aan met minimale latentie. Dit is essentieel voor applicaties die op grote schaal draaien.
+- **Uitbreidbaarheid met plugins**: Kong biedt een uitgebreid ecosysteem van zowel officiële als community-plugins. Dit maakt het eenvoudig om functionaliteiten toe te voegen zoals authenticatie, autorisatie, rate limiting en meer.
+- **Hoge prestaties**: Gebouwd op Nginx en geschreven in Lua, kan Kong hoge verkeersvolumes aan met minimale latentie. Dit is essentieel voor applicaties die op grote schaal draaien.
 - **Naadloze Kubernetes-integratie**: Met de Kong Ingress Controller kun je Kong eenvoudig integreren in je Kubernetes-cluster, waardoor je profiteert van geavanceerde API-beheerfunctionaliteiten.
-- **Actieve Community en Ondersteuning**: Een grote en actieve open-source gemeenschap zorgt voor snelle updates, uitgebreide documentatie en ondersteuning bij problemen.
+- **Actieve community en ondersteuning**: Een grote en actieve open-source gemeenschap zorgt voor snelle updates, uitgebreide documentatie en ondersteuning bij problemen.
 
 Met deze eigenschappen bleek Kong een uitstekende keuze voor onze Kubernetes-omgeving. De mogelijkheid om plugins te gebruiken zonder de backend-services aan te passen, maakt het een flexibele oplossing voor API-beheer.
 
-![alt text](image-1.png)
+![Kong afbeelding met kernfunctionaliten](image-1.png)
 
-### Kernfunctionaliteiten die Mijn Aandacht Trokken
+### Kernfunctionaliteiten die mijn aandacht trokken
 
 - **Load Balancing**: Automatische verdeling van verkeer over meerdere backend-services, wat bijdraagt aan de schaalbaarheid en betrouwbaarheid.
 - **Beveiliging**: Ondersteuning voor diverse authenticatie- en autorisatiemethoden, zoals OAuth2, JWT en API-sleutels.
 - **Observability**: Integratie met monitoring tools zoals Prometheus en Grafana voor real-time inzicht in prestaties en verkeer.
 - **Protocol Ondersteuning**: Ondersteunt HTTP/1.1, HTTP/2 en gRPC, waardoor het geschikt is voor verschillende soorten applicaties.
 
-![alt text](image-2.png)
+![Afbeelding met wat Kong oplost](image-2.png)
 
-## Implementatie van Kong in Kubernetes: Mijn Stappenplan
+## Implementatie van Kong in Kubernetes: Mijn stappenplan
 
 Het opzetten van Kong in een Kubernetes-omgeving is eenvoudiger dan je wellicht denkt. Hieronder leg ik uit hoe ik Kong heb geïmplementeerd in een eenvoudige lokale Kubernetes-omgeving met behulp van Minikube. Dit stappenplan kan dienen als een solide basis voor iedereen die met Kong wil starten.
 
@@ -44,7 +61,7 @@ Dit commando start een lokale Kubernetes-cluster met voldoende resources om Kong
 
 ### Stap 2: Installatie van Kong met Helm
 
-Om Kong te installeren gebruiken we Helm, de pakketbeheerder voor Kubernetes. Helm maakt het eenvoudig om applicaties zoals Kong op een herhaalbare manier te installeren.
+Om Kong te installeren gebruiken we Helm, de package manager voor Kubernetes. Helm maakt het eenvoudig om applicaties zoals Kong op een herhaalbare manier te installeren.
 
 Voeg eerst de Helm-repository van Kong toe:
 
@@ -89,7 +106,7 @@ spec:
 
 Met de annotatie `kubernetes.io/ingress.class: "kong"` geef je aan dat Kong deze Ingress-resource moet afhandelen. Het pad `/api` wordt gekoppeld aan de service `my-service`.
 
-### Stap 4: Beveiliging Implementeren met Plugins
+### Stap 4: Beveiliging implementeren met plugins
 
 Een van de sterke punten van Kong is de mogelijkheid om beveiligingsmaatregelen toe te voegen zonder wijzigingen aan de backend-services.
 
@@ -118,7 +135,7 @@ spec:
 
 Door de annotatie `konghq.com/plugins` toe te voegen aan de service, wordt de plugin toegepast op alle routes die naar deze service leiden.
 
-### Stap 5: Integratie in de DevOps Pipeline
+### Stap 5: Integratie in de DevOps pipeline
 
 Om ervoor te zorgen dat de configuratie van Kong consistent blijft, kun je de deployment automatiseren met behulp van CI/CD-tools. Hier is een voorbeeld van een Jenkins-pipeline die de deployment van Kong automatiseert:
 
@@ -137,11 +154,11 @@ pipeline {
 
 Door Kong in je DevOps-pipeline op te nemen, kun je wijzigingen snel en foutloos implementeren.
 
-## Best Practices voor Configuratie en Beveiliging
+## Best practices voor configuratie en beveiliging
 
 Tijdens het implementatieproces heb ik verschillende best practices geïdentificeerd die ik graag deel.
 
-### Gebruik Declaratieve Configuratie met decK
+### Gebruik declaratieve configuratie met decK
 
 Het beheren van Kong-configuraties met decK zorgt voor versiebeheer en maakt het eenvoudig om wijzigingen bij te houden en te auditen (Kong, z.d.-b).
 
@@ -159,7 +176,7 @@ deck sync -s kong.yaml  # Synchroniseer configuratie
 - **Consistentie**: Voorkomt configuratiedrift tussen omgevingen.
 - **Automatisering**: Integratie met CI/CD-pipelines voor automatische deployments.
 
-### Implementeer Rate Limiting en Beveiliging
+### Implementeer rate limiting en beveiliging
 
 Om onze APIs te beschermen tegen overbelasting en aanvallen, implementeerden we de Rate Limiting plugin.
 
@@ -181,11 +198,11 @@ config:
 - Beperkt het aantal verzoeken tot 100 per minuut per consument.
 - De `policy: local` betekent dat de limiet per node wordt toegepast.
 
-### Monitoring en Logging met Prometheus en Grafana
+### Monitoring en logging met Prometheus en Grafana
 
 Voor real-time inzicht in API-verkeer en prestaties integreerden we Kong met Prometheus en Grafana.
 
-Prometheus Plugin Toevoegen:
+Prometheus plugin Toevoegen:
 
 ```yaml
 apiVersion: configuration.konghq.com/v1
@@ -207,7 +224,7 @@ plugin: prometheus
 - **Probleemoplossing**: Snellere identificatie en oplossing van problemen.
 - **Capaciteitsplanning**: Beter begrip van resourcegebruik voor toekomstige scaling.
 
-## Uitdagingen en Oplossingen
+## Uitdagingen en oplossingen
 
 Geen implementatie is zonder uitdagingen. Hier zijn enkele obstakels die ik tegenkwam en hoe ik ze heb overwonnen.
 
@@ -221,13 +238,13 @@ Geen implementatie is zonder uitdagingen. Hier zijn enkele obstakels die ik tege
 - **Naming Conventions**: Consistente en duidelijke naamgevingsregels hielpen bij het overzicht.
 - **Documentatie**: Gedetailleerde documentatie van alle configuraties en wijzigingen.
 
-### Debugging en Foutopsporing
+### Debugging en foutopsporing
 
 **Uitdaging**: Het identificeren van problemen in een gedistribueerde omgeving was lastig.
 
 **Oplossing**:
 
-- **Gedetailleerde Logging**: Inschakelen van uitgebreide logging in Kong en het gebruik van log-aggregatietools zoals ELK-stack.
+- **Gedetailleerde logging**: Inschakelen van uitgebreide logging in Kong en het gebruik van log-aggregatietools zoals ELK-stack.
 - **Kong Admin API**: Gebruik maken van de Admin API voor diagnostiek en het bekijken van realtime configuraties.
 
 ### Prestatieproblemen
@@ -240,7 +257,7 @@ Geen implementatie is zonder uitdagingen. Hier zijn enkele obstakels die ik tege
 - **Horizontale Schaling**: Gebruik maken van Kubernetes' autoscaling om Kong-pods automatisch te schalen.
 - **Monitoring**: Continu monitoren van prestaties en proactief reageren op trends.
 
-## Tips voor een Succesvolle Implementatie
+## Tips voor een succesvolle simplementatie
 
 Op basis van mijn ervaringen heb ik enkele aanbevelingen voor degenen die overwegen Kong te implementeren.
 
@@ -250,7 +267,7 @@ Op basis van mijn ervaringen heb ik enkele aanbevelingen voor degenen die overwe
 - **Blijf Leren en Updaten**: De technologie evolueert snel; zorg dat je op de hoogte blijft van nieuwe releases en features.
 - **Security First**: Implementeer vanaf het begin beveiligingsmaatregelen en voer regelmatig audits uit.
 
-## Conclusie: Kong als Onmisbare Tool in Mijn DevOps Toolkit
+## Conclusie: Kong als onmisbare tool in mijn DevOps toolkit
 
 Mijn reis met Kong heeft me laten zien hoe krachtig en flexibel een goed geïmplementeerde API-gateway kan zijn. Door de kernfunctionaliteiten van Kong te benutten en deze uit te breiden met zowel standaard als community-plugins, heb ik het API-beheer binnen onze Kubernetes-omgeving aanzienlijk kunnen verbeteren.
 
@@ -263,15 +280,3 @@ Mijn reis met Kong heeft me laten zien hoe krachtig en flexibel een goed geïmpl
 Of je nu net begint met microservices of al een complexe infrastructuur hebt, Kong biedt de tools en flexibiliteit om je API-beheer naar een hoger niveau te tillen.
 
 Ik moedig je aan om zelf op ontdekkingstocht te gaan met Kong en te ervaren hoe het jouw DevOps-processen kan optimaliseren.
-
-## Bronnen
-
-- Kong. (z.d.-a). Kong for Kubernetes. Geraadpleegd van https://docs.konghq.com/kubernetes-ingress-controller/
-- Kong. (z.d.-b). decK Documentation. Geraadpleegd van https://docs.konghq.com/deck/
-- Prometheus. (z.d.). Prometheus Documentation. Geraadpleegd van https://prometheus.io/docs/introduction/overview/
-- Grafana Labs. (z.d.). Grafana Documentation. Geraadpleegd van https://grafana.com/docs/
-- Kubernetes. (z.d.). Kubernetes Documentation. Geraadpleegd van https://kubernetes.io/docs/home/
-- Jenkins. (z.d.). Jenkins Documentation. Geraadpleegd van https://www.jenkins.io/doc/
-- NGINX. (z.d.). NGINX Documentation. Geraadpleegd van https://docs.nginx.com/
-- Traefik Labs. (z.d.). Traefik Documentation. Geraadpleegd van https://doc.traefik.io/traefik/
-- HAProxy Technologies. (z.d.). HAProxy Documentation. Geraadpleegd van https://www.haproxy.org/documentation/
