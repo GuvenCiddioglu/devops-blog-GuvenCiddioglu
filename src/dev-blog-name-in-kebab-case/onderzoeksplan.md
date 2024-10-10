@@ -22,15 +22,20 @@ Voor dit onderzoek maak ik gebruik van diverse onderzoeksmethoden om een breed e
 - **Beschrijving**: Analyseren van succesvolle implementaties van Kong binnen verschillende organisaties om best practices en het gebruik van plugins te identificeren.
 - **Bronnen**: Bedrijfscases, online forums en GitHub repositories.
 
+
+markdown
+Code kopiëren
 ### Bronnen
 - **Officiële Documentatie**:
-  - Kong Official Documentation. Geraadpleegd van [https://docs.konghq.com/](https://docs.konghq.com/)
-  - Kong for Kubernetes. Geraadpleegd van [https://docs.konghq.com/kubernetes-ingress-controller/](https://docs.konghq.com/kubernetes-ingress-controller/)
+  - Kong. (n.d.). *Kong Official Documentation*. Geraadpleegd op 9 oktober 2024, van [https://docs.konghq.com/](https://docs.konghq.com/)
+  - Kong. (n.d.). *Kong for Kubernetes*. Geraadpleegd op 9 oktober 2024, van [https://docs.konghq.com/kubernetes-ingress-controller/](https://docs.konghq.com/kubernetes-ingress-controller/)
 
 - **Implementatie Gidsen**:
-  - Kong Ingress Controller for Kubernetes. Geraadpleegd van [https://github.com/Kong/kubernetes-ingress-controller](https://github.com/Kong/kubernetes-ingress-controller)
+  - Kong. (n.d.). *Kong Ingress Controller for Kubernetes*. Geraadpleegd op 9 oktober 2024, van [https://github.com/Kong/kubernetes-ingress-controller](https://github.com/Kong/kubernetes-ingress-controller)
 
 - **Case Studies**:
   - Johnson, L. (2022). *Implementing Kong in a Kubernetes Environment*. DevOps Case Studies Inc.
 
-- **Community Resources**:
+- **ChatGPT Consultaties**:
+  - ChatGPT. (2024, 10 oktober). *Onderzoek Plan Generatie*. Geraadpleegd van [https://chatgpt.com/share/67083dac-cbb4-800e-a786-96a223a7d684](https://chatgpt.com/share/67083dac-cbb4-800e-a786-96a223a7d684)
+  - ChatGPT. (2024, 10 oktober). *Onderzoek Plan Aangepast naar Markdown Formaat*. Geraadpleegd van [https://chatgpt.com/share/67083dc8-ad60-800e-b383-daeab144e67f](https://chatgpt.com/share/67083dc8-ad60-800e-b383-daeab144e67f)
