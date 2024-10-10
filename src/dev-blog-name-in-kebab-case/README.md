@@ -1,8 +1,19 @@
 # Mijn Reis met Kong: Hoe ik API-beheer in Kubernetes Optimaliseerde
+<hr/>
+
+*[Guven Ciddioglu, oktober 2024.](https://github.com/hanaim-devops/blog-student-naam)*
+<hr/>
 
 Als DevOps-professional ben ik altijd op zoek naar manieren om onze workflows efficiënter, veiliger en schaalbaarder te maken. De opkomst van microservices en cloud-native applicaties heeft het API-beheer complexer gemaakt dan ooit. Onlangs besloot ik Kong te verkennen, een krachtige open-source API-gateway die veelbelovend leek voor onze Kubernetes-omgeving. In deze blogpost neem ik je mee op mijn reis met Kong, deel ik mijn ervaringen en geef ik tips over hoe je Kong kunt implementeren en optimaliseren voor beter API-beheer.
+<hr/>
+
+
+## Inhoudopgave
+
+[TOC]
 
 ## Bronnen
+<hr/>
 
 - Grafana Labs. (9 oktober 2024). Grafana Documentation. Geraadpleegd van [https://grafana.com/docs/](https://grafana.com/docs/)  
 - HAProxy Technologies. (9 oktober 2024). HAProxy Documentation. Geraadpleegd van [https://www.haproxy.org/documentation/](https://www.haproxy.org/documentation/)  
@@ -18,8 +29,23 @@ Als DevOps-professional ben ik altijd op zoek naar manieren om onze workflows ef
 - ChatGPT. (9 oktober 2024). Onderzoeksplan aanpassing. Geraadpleegd van [https://chatgpt.com/share/67078eba-25c0-800e-a53e-20f30848f3eb](https://chatgpt.com/share/67078eba-25c0-800e-a53e-20f30848f3eb)  
 - ChatGPT. (9 oktober 2024). Verschil tussen Kong en native Ingress van Kubernetes. Geraadpleegd van [https://chatgpt.com/share/67078ed9-9278-800e-b133-47ea63b7544f](https://chatgpt.com/share/67078ed9-9278-800e-b133-47ea63b7544f)
 
+## Conclusie: Kong als onmisbare tool in mijn DevOps toolkit
+<hr/>
+
+Mijn reis met Kong heeft me laten zien hoe krachtig en flexibel een goed geïmplementeerde API-gateway kan zijn. Door de kernfunctionaliteiten van Kong te benutten en deze uit te breiden met zowel standaard als community-plugins, heb ik het API-beheer binnen onze Kubernetes-omgeving aanzienlijk kunnen verbeteren.
+
+### Belangrijkste Voordelen die ik Heb Ondervonden:
+
+- **Verbeterde Beveiliging**: Door het eenvoudig toepassen van beveiligingsplugins konden we onze APIs beter beschermen zonder ingrijpende codewijzigingen.
+- **Schaalbaarheid**: Kong's prestatieschaalbaarheid stelde ons in staat om zonder zorgen meer verkeer te verwerken.
+- **Centralisatie van API Beheer**: Met Kong konden we het beheer van verschillende APIs centraliseren, wat het onderhoud vereenvoudigde.
+
+Of je nu net begint met microservices of al een complexe infrastructuur hebt, Kong biedt de tools en flexibiliteit om je API-beheer naar een hoger niveau te tillen.
+
+Ik moedig je aan om zelf op ontdekkingstocht te gaan met Kong en te ervaren hoe het jouw DevOps-processen kan optimaliseren.
 
 ## Waarom Kong? Een Diepgaande Kijk op de Kernfunctionaliteiten
+<hr/>
 
 Kong is een open-source API-gateway die als tussenlaag fungeert tussen clients en backend-services. Het beheert, beveiligt en optimaliseert API-verkeer, waardoor je eenvoudig functionaliteiten kunt toevoegen zoals load balancing, authenticatie, en observability
 
@@ -46,6 +72,7 @@ Met deze eigenschappen bleek Kong een uitstekende keuze voor onze Kubernetes-omg
 ![Afbeelding met wat Kong oplost](image-2.png)
 
 ## Implementatie van Kong in Kubernetes: Mijn stappenplan
+<hr/>
 
 Het opzetten van Kong in een Kubernetes-omgeving is eenvoudiger dan je wellicht denkt. Hieronder leg ik uit hoe ik Kong heb geïmplementeerd in een eenvoudige lokale Kubernetes-omgeving met behulp van Minikube. Dit stappenplan kan dienen als een solide basis voor iedereen die met Kong wil starten.
 
@@ -155,6 +182,7 @@ pipeline {
 Door Kong in je DevOps-pipeline op te nemen, kun je wijzigingen snel en foutloos implementeren.
 
 ## Best practices voor configuratie en beveiliging
+<hr/>
 
 Tijdens het implementatieproces heb ik verschillende best practices geïdentificeerd die ik graag deel.
 
@@ -225,6 +253,7 @@ plugin: prometheus
 - **Capaciteitsplanning**: Beter begrip van resourcegebruik voor toekomstige scaling.
 
 ## Uitdagingen en oplossingen
+<hr/>
 
 Geen implementatie is zonder uitdagingen. Hier zijn enkele obstakels die ik tegenkwam en hoe ik ze heb overwonnen.
 
@@ -266,17 +295,3 @@ Op basis van mijn ervaringen heb ik enkele aanbevelingen voor degenen die overwe
 - **Automatiseer Waar Mogelijk**: Gebruik CI/CD-pipelines en declaratieve configuratie om menselijke fouten te minimaliseren.
 - **Blijf Leren en Updaten**: De technologie evolueert snel; zorg dat je op de hoogte blijft van nieuwe releases en features.
 - **Security First**: Implementeer vanaf het begin beveiligingsmaatregelen en voer regelmatig audits uit.
-
-## Conclusie: Kong als onmisbare tool in mijn DevOps toolkit
-
-Mijn reis met Kong heeft me laten zien hoe krachtig en flexibel een goed geïmplementeerde API-gateway kan zijn. Door de kernfunctionaliteiten van Kong te benutten en deze uit te breiden met zowel standaard als community-plugins, heb ik het API-beheer binnen onze Kubernetes-omgeving aanzienlijk kunnen verbeteren.
-
-### Belangrijkste Voordelen die ik Heb Ondervonden:
-
-- **Verbeterde Beveiliging**: Door het eenvoudig toepassen van beveiligingsplugins konden we onze APIs beter beschermen zonder ingrijpende codewijzigingen.
-- **Schaalbaarheid**: Kong's prestatieschaalbaarheid stelde ons in staat om zonder zorgen meer verkeer te verwerken.
-- **Centralisatie van API Beheer**: Met Kong konden we het beheer van verschillende APIs centraliseren, wat het onderhoud vereenvoudigde.
-
-Of je nu net begint met microservices of al een complexe infrastructuur hebt, Kong biedt de tools en flexibiliteit om je API-beheer naar een hoger niveau te tillen.
-
-Ik moedig je aan om zelf op ontdekkingstocht te gaan met Kong en te ervaren hoe het jouw DevOps-processen kan optimaliseren.
