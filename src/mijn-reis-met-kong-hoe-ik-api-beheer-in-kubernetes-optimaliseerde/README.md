@@ -3,12 +3,19 @@
 
 ---
 
+<figure style="float: right; width: 250px; margin-left: 10px;">
+    <img src="plaatjes/image-1.png" width="250" alt="Logo Kong">
+    <figcaption style="text-align: center;">
+        Figuur 1: Kong logo 
+        <a href="https://webcatalog.io/en/apps/kong//" target="_blank">Bron</a>
+    </figcaption>
+</figure>
+
 Als DevOps-professional ben ik altijd op zoek naar manieren om onze workflows efficiënter, veiliger en schaalbaarder te maken. De opkomst van microservices en cloud-native applicaties heeft het API-beheer complexer gemaakt dan ooit. Onlangs besloot ik Kong te verkennen, een krachtige open-source API-gateway die veelbelovend leek voor onze Kubernetes-omgeving.
 
 In deze blogpost neem ik je mee op mijn reis met Kong. Ik bespreek de unieke eigenschappen van Kong en waarom het een goede keuze is voor API-beheer in Kubernetes. Vervolgens geef ik een stappenplan voor de implementatie van Kong in een Kubernetes-omgeving. Ik deel best practices voor configuratie en beveiliging, waaronder authenticatie, rate limiting en logging. Daarnaast bespreek ik de uitdagingen die ik tegenkwam en hoe ik ze heb opgelost. Tot slot geef ik tips voor een succesvolle implementatie van Kong.
 
 Laten we beginnen!
-
 ---
 
 ### Inhoudsopgave
@@ -32,8 +39,8 @@ Kong blijkt hiermee een uitstekende keuze voor onze Kubernetes-omgeving, vooral 
 
 Zoals te zien in Figuur 1, biedt Kong een breed scala aan functionaliteiten die essentieel zijn voor modern API-beheer.
 
-![Figuur 1: Overzicht van de kernfunctionaliteiten van Kong (Bron: Kong Documentatie)](image-4.png)  
-*Figuur 1: Overzicht van de kernfunctionaliteiten van Kong ([Bron](https://scaleout.ninja/post/starting-with-kong/))*
+![Figuur 2: Overzicht van de kernfunctionaliteiten van Kong (Bron: Kong Documentatie)](plaatjes/image-4.png)  
+*Figuur 2: Overzicht van de kernfunctionaliteiten van Kong ([Bron](https://scaleout.ninja/post/starting-with-kong/))*
 
 **Kernfunctionaliteiten die mijn aandacht trokken**
 - **Load Balancing**: Automatische verdeling van verkeer over meerdere backend-services, wat bijdraagt aan schaalbaarheid en betrouwbaarheid.
@@ -43,8 +50,8 @@ Zoals te zien in Figuur 1, biedt Kong een breed scala aan functionaliteiten die 
 
 Figuur 2 illustreert hoe Kong deze functionaliteiten inzet om API-beheer te vereenvoudigen, met nadruk op authenticatie, rate limiting en logging.
 
-![Figuur 2: Hoe Kong API-beheer vereenvoudigt (Bron: Kong Documentatie)](image-3.png)  
-*Figuur 2: Hoe Kong API-beheer vereenvoudigt ([Bron](https://scaleout.ninja/post/starting-with-kong/))*
+![Figuur 3: Hoe Kong API-beheer vereenvoudigt (Bron: Kong Documentatie)](plaatjes/image-3.png)  
+*Figuur 3: Hoe Kong API-beheer vereenvoudigt ([Bron](https://scaleout.ninja/post/starting-with-kong/))*
 
 
 Zoals te zien in Figuur 2, biedt Kong oplossingen voor veelvoorkomende uitdagingen in API-beheer, waaronder authenticatie, rate limiting en logging. In de volgende secties zal ik uitleggen hoe ik deze functionaliteiten heb geïmplementeerd en geoptimaliseerd.
